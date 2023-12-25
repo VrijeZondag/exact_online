@@ -2,7 +2,7 @@
 
 module ExactOnline
   module Jobs
-    class KeepAlive < ApplicationJob
+    class KeepAlive < ::ApplicationJob
       def perform
         ::ExactOnline.alive?
       end

@@ -4,7 +4,7 @@
 
 module ExactOnline
   module Jobs
-    class CreatePurchaseInvoice < ApplicationJob
+    class CreatePurchaseInvoice < ::ApplicationJob
       def perform(id)
         invoice = get_invoice_from_exact_online(id)
 
