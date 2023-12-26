@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ExactOnline
-  class CustomersController < Base
+  class CustomersController < ActionController::Base
     skip_before_action :verify_authenticity_token
 
     def webhook

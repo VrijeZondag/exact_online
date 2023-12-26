@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ExactOnline
-  class AuthenticationsController < Base
+  class AuthenticationsController < ActionController::Base
     def new
       redirect_to ::ExactOnline::Client.new.authorize_url, allow_other_host: true
     end
