@@ -3,13 +3,13 @@
 module ExactOnline
   module Services
     class CustomersApi < Base
-      RESOURCE = "crm/Accounts"
+      RESOURCE = 'crm/Accounts'
 
       class << self
         delegate :find_by_email, to: :new
 
         def find_by(attributes = {})
-          raise "Not implemented" if attributes[:email].blank?
+          raise 'Not implemented' if attributes[:email].blank?
 
           find_by_email(attributes[:email])
         end

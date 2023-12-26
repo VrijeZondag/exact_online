@@ -7,9 +7,9 @@ module ExactOnline
     class Mailbox < Base
       FULL_EXAMPLE_RESOURCE = "/api/v1/{division}/read/mailbox/DefaultMailbox?$filter=ID eq \
                               guid'00000000-0000-0000-0000-000000000000'&$select=Created"
-      RESOURCE              = "mailbox/Mailboxes"
-      SCANSERVICE_SELECTOR  = "?$filter=IsScanServiceMailbox eq true"
-      SELECT_FIELDS         = "&$select=Description,Creator,Mailbox"
+      RESOURCE              = 'mailbox/Mailboxes'
+      SCANSERVICE_SELECTOR  = '?$filter=IsScanServiceMailbox eq true'
+      SELECT_FIELDS         = '&$select=Description,Creator,Mailbox'
 
       class << self
         def get

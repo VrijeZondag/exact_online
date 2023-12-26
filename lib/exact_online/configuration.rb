@@ -8,9 +8,10 @@ module ExactOnline
       auth_webhook_url: nil,
       client_id: nil,
       client_secret: nil,
-      site: "https://start.exactonline.nl/",
-      authorize_url: "oauth2/auth",
-      token_url: "oauth2/token"
+      site: 'https://start.exactonline.nl/',
+      authorize_url: 'oauth2/auth',
+      token_url: 'oauth2/token',
+      token_store: 'Api::Token'
     }.freeze
 
     attr_accessor(*DEFAULTS.keys)
@@ -20,7 +21,7 @@ module ExactOnline
     def initialize(&)
       set_defaults
       apply_custom_configurations(&)
-      check_required_parameters
+      # check_required_parameters
     end
 
     private

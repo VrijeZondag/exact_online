@@ -23,3 +23,11 @@ module ExactOnline
     end
   end
 end
+
+require 'exact_online/resources/collection'
+require 'exact_online/resources/customer'
+require 'exact_online/resources/document_attachment'
+require 'exact_online/resources/document'
+require 'exact_online/resources/mailbox'
+require 'exact_online/resources/purchase_invoice_lines'
+require 'exact_online/resources/purchase_invoice'

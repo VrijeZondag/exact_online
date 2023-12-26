@@ -22,7 +22,7 @@ module ExactOnline
       private
 
       def parse_response(response)
-        result = Hash.from_xml(response).dig("feed", "entry")
+        result = Hash.from_xml(response).dig('feed', 'entry')
         if result.is_a?(Hash)
           [result]
         else
@@ -32,3 +32,6 @@ module ExactOnline
     end
   end
 end
+
+require 'exact_online/services/customers_api'
+require 'exact_online/services/purchase_invoices_api'

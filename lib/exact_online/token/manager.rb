@@ -38,11 +38,11 @@ module ExactOnline
       def renew_token_if_expired
         return unless current_token&.expired?
 
-        log_info("Exact Online token expired, refreshing")
+        log_info('Exact Online token expired, refreshing')
         renew_token
       rescue StandardError => e
         Rails.logger.error("Failed to refresh token: #{e.message}")
-        token_store.find_by(app: :exact_online).update(locked: false)
+        token_store.find_or_create_by(app: :exact_online).update(locked: false)
       end
 
       def renew_token
@@ -55,7 +55,7 @@ module ExactOnline
       end
 
       def stored_token
-        @stored_token ||= token_store.find_by(app: :exact_online)
+        @stored_token ||= token_store.find_or_create_by(app: :exact_online)
       end
 
       def clear_cached_tokens

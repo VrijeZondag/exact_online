@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'oauth2'
+
 module ExactOnline
   class OAuthHandler
     attr_reader :config, :omit_api_suffix, :client
@@ -16,7 +18,7 @@ module ExactOnline
 
     def receive_code(code)
       result = oauth_client.auth_code.get_token(code, redirect_uri: config.auth_webhook_url)
-      Rails.logger.info("OAuthHandler.receive_code a new code to request a token with")
+      Rails.logger.info('OAuthHandler.receive_code a new code to request a token with')
       client.token_manager.update_saved_token(result)
     rescue StandardError => e
       Rails.logger.error("Error when receiving Code: #{e.message}")

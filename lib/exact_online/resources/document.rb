@@ -5,7 +5,7 @@ module ExactOnline
     class Document < Base
       ID_KEY = %w[entry content properties ID].freeze
       URL_KEY = %w[entry content properties DocumentViewUrl].freeze
-      DOCUMENT_PATH = "documents/Documents"
+      DOCUMENT_PATH = 'documents/Documents'
       FILTER_PARAM = "(guid'%s')"
 
       attr_reader :id, :url
@@ -46,7 +46,7 @@ module ExactOnline
       end
 
       def remove_site_prefix
-        url.gsub(site_prefix, "")
+        url.gsub(site_prefix, '')
       end
 
       def site_prefix
@@ -56,11 +56,11 @@ module ExactOnline
       def handle_error(response)
         case response.status
         when 404
-          raise "Document not found"
+          raise 'Document not found'
         when 401
-          raise "Unauthorized access"
+          raise 'Unauthorized access'
         when 500
-          raise "Internal server error"
+          raise 'Internal server error'
         else
           raise "Error occurred while downloading the document: #{response.status} #{response.reason_phrase}"
         end

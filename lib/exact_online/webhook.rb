@@ -16,16 +16,16 @@ module ExactOnline
     end
 
     def self.response_to_collection(response)
-      raw_collection = Hash.from_xml(response.body)["feed"]["entry"]
+      raw_collection = Hash.from_xml(response.body)['feed']['entry']
       collection = raw_collection.is_a?(Hash) ? [raw_collection] : raw_collection
       if collection.nil?
         []
       else
         collection.map do |webhook|
           new(
-            webhook.dig("content", "properties", "Topic"),
-            webhook["content"]["properties"]["CallbackURL"],
-            webhook["id"]
+            webhook.dig('content', 'properties', 'Topic'),
+            webhook['content']['properties']['CallbackURL'],
+            webhook['id']
           )
         end
       end
@@ -43,7 +43,7 @@ module ExactOnline
 
     def subscribe
       client.token.post(WEBHOOK_URL) do |c|
-        c.headers[:content_type] = "application/json"
+        c.headers[:content_type] = 'application/json'
         c.body = { CallbackURL: @url, Topic: @topic }.to_json
       end
     end

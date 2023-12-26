@@ -8,7 +8,7 @@
 module ExactOnline
   module Resources
     class PurchaseInvoice < Base
-      RESOURCE = "purchaseentry/PurchaseEntries"
+      RESOURCE = 'purchaseentry/PurchaseEntries'
       GLANS = %w[7000 7001 7002 7011 7012 7022].freeze
 
       attr_accessor :invoice_amount, :id, :vat, :amount_without_vat, :supplier_name,
@@ -21,17 +21,17 @@ module ExactOnline
       end
 
       def initialize(raw)
-        properties = raw["properties"]
+        properties = raw['properties']
 
-        @id = properties["EntryID"]
-        @invoice_amount = properties["AmountDC"].to_d * -1
-        @vat = properties["VATAmountDC"].to_d * -1
+        @id = properties['EntryID']
+        @invoice_amount = properties['AmountDC'].to_d * -1
+        @vat = properties['VATAmountDC'].to_d * -1
         @amount_without_vat = @invoice_amount - @vat
-        @supplier_name = properties["SupplierName"]
-        @supplier_id = properties["Supplier"]
-        @invoice_number = properties["InvoiceNumber"]
-        @invoice_date = properties["EntryDate"]
-        @document_id = properties["Document"]
+        @supplier_name = properties['SupplierName']
+        @supplier_id = properties['Supplier']
+        @invoice_number = properties['InvoiceNumber']
+        @invoice_date = properties['EntryDate']
+        @document_id = properties['Document']
       end
 
       def purchase_lines?

@@ -46,7 +46,7 @@ module ExactOnline
         return unless file_content
 
         io = StringIO.new(file_content)
-        invoice.document.attach(io:, filename: document.filename, content_type: "application/pdf")
+        invoice.document.attach(io:, filename: document.filename, content_type: 'application/pdf')
       end
 
       def get_invoice_from_exact_online(id)

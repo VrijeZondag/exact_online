@@ -8,14 +8,14 @@ module ExactOnline
     delegate :authorize_url, :receive_code, :load_token, to: :oauth_handler
     delegate :get, to: :token
 
-    def self.division(config = exact_online_config)
-      config.division || (raise "No division found")
+    def self.division
+      ExactOnline.configuration.division || (raise 'No division found')
     end
 
-    def initialize(token_store: Api::Token, omit_api_suffix: false, config: exact_online_config)
+    def initialize(config = ExactOnline.configuration, omit_api_suffix: false)
       @config = config
-      @token_store = token_store
-      @oauth_handler = OAuthHandler.new(self, omit_api_suffix:)
+      @token_store = Object.const_get(ExactOnline.configuration.token_store)
+      @oauth_handler = ::ExactOnline::OAuthHandler.new(self, omit_api_suffix:)
       @token_manager = Token::Manager.new(self, oauth_handler.oauth_client)
     end
 

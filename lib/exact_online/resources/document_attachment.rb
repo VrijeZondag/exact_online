@@ -3,13 +3,13 @@
 module ExactOnline
   module Resources
     class DocumentAttachment < Base
-      PDF_EXTENSION     = ".pdf"
-      EXACT_ONLINE_BASE = "https://start.exactonline.nl"
+      PDF_EXTENSION     = '.pdf'
+      EXACT_ONLINE_BASE = 'https://start.exactonline.nl'
       FILTER_PARAM      = "?$filter=Document eq guid'%s'&"
-      SELECT_PARAMS     = "$select=FileName,FileSize,Url,Attachment"
-      DOWNLOAD_PARAM    = "&Download=1"
+      SELECT_PARAMS     = '$select=FileName,FileSize,Url,Attachment'
+      DOWNLOAD_PARAM    = '&Download=1'
 
-      DOCUMENT_PATH = "bulk/Documents/DocumentAttachments"
+      DOCUMENT_PATH = 'bulk/Documents/DocumentAttachments'
 
       URL_KEY           = %w[content properties Url].freeze
       FILENAME_KEY      = %w[content properties FileName].freeze
@@ -49,7 +49,7 @@ module ExactOnline
       end
 
       def files
-        @files ||= Array(raw.dig("feed", "entry"))
+        @files ||= Array(raw.dig('feed', 'entry'))
       end
 
       private
@@ -64,7 +64,7 @@ module ExactOnline
       end
 
       def remove_base_from_url
-        url.gsub(EXACT_ONLINE_BASE, "")
+        url.gsub(EXACT_ONLINE_BASE, '')
       end
 
       def download_url

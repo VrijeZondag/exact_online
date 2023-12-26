@@ -8,9 +8,9 @@ module Public
       end
 
       def webhook
-        ::ExactOnline::Client.new.receive_code(params["code"])
+        ::ExactOnline::Client.new.receive_code(params['code'])
 
-        redirect_to root_path, notice: "Exact Online is geautoriseerd"
+        redirect_to root_path, notice: 'Exact Online is geautoriseerd'
       end
     end
   end

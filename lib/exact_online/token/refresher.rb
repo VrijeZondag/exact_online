@@ -25,7 +25,7 @@ module ExactOnline
       end
 
       def refresh!
-        logger.info("Refreshing Exact Online token")
+        logger.info('Refreshing Exact Online token')
         update_saved_token(token.refresh!)
       rescue StandardError => e
         logger.error("Failed to refresh token: #{e.message}")
@@ -43,7 +43,7 @@ module ExactOnline
           hashed_token: token.to_hash,
           locked: false
         )
-        logger.info("New Exact Online token saved")
+        logger.info('New Exact Online token saved')
       end
     end
   end

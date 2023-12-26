@@ -3,7 +3,7 @@
 module ExactOnline
   module Services
     class PurchaseInvoicesApi < Base
-      RESOURCE = "purchaseentry/PurchaseEntries"
+      RESOURCE = 'purchaseentry/PurchaseEntries'
 
       class << self
         delegate :find, to: :new
@@ -16,7 +16,7 @@ module ExactOnline
       end
 
       def parse_response(response)
-        Hash.from_xml(response).dig("entry", "content")
+        Hash.from_xml(response).dig('entry', 'content')
       end
     end
   end
