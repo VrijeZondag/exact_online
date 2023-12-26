@@ -46,10 +46,14 @@ module ExactOnline
     end
 
     def subscribe
-      client.token.post((self.base_url + WEBHOOK_URL)) do |c|
+      client.token.post((base_url + WEBHOOK_URL)) do |c|
         c.headers[:content_type] = 'application/json'
         c.body = { CallbackURL: @url, Topic: @topic }.to_json
       end
+    end
+
+    def base_url 
+      @base_url ||= "v1/#{ExactOnline::Client.division}/"
     end
 
     def unsubscribe
