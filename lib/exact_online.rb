@@ -37,4 +37,4 @@ require 'exact_online/token/manager'
 require 'exact_online/token/refresher'
 
 require 'exact_online/o_auth_handler'
-# require 'exact_online/webhook'
+require 'exact_online/webhook'
