@@ -12,7 +12,7 @@ module ExactOnline
       response = client.token.get((base_url + WEBHOOK_URL))
       collection = response_to_collection(response)
 
-      Collection.new(collection)
+      Resources::Collection.new(collection)
     end
 
     def self.response_to_collection(response)
