@@ -4,12 +4,12 @@ module ExactOnline
   class Webhook
     attr_reader :guid, :topic, :url
 
-    WEBHOOK_URL = "v1/#{ExactOnline::Client.division}/webhooks/WebhookSubscriptions".freeze
+    WEBHOOK_URL = "webhooks/WebhookSubscriptions".freeze
 
     def self.all
       client = ExactOnline::Client.new
 
-      response = client.token.get(WEBHOOK_URL)
+      response = client.token.get((base_url + WEBHOOK_URL))
       collection = response_to_collection(response)
 
       Collection.new(collection)
@@ -31,6 +31,10 @@ module ExactOnline
       end
     end
 
+    def self.base_url
+      @base_url ||= "v1/#{ExactOnline::Client.division}/"
+    end
+
     def initialize(topic, url, eo_url = nil)
       @topic = topic
       @url = url
@@ -42,7 +46,7 @@ module ExactOnline
     end
 
     def subscribe
-      client.token.post(WEBHOOK_URL) do |c|
+      client.token.post((self.base_url + WEBHOOK_URL)) do |c|
         c.headers[:content_type] = 'application/json'
         c.body = { CallbackURL: @url, Topic: @topic }.to_json
       end
