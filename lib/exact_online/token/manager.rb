@@ -33,6 +33,18 @@ module ExactOnline
         false
       end
 
+      ## dont love the duplication with the token refresher
+      def update_saved_token(token)
+        token_store.find_or_create_by(app: :exact_online).update(
+          token: token.token,
+          refresh_token: token.refresh_token,
+          expires_in: token.expires_in,
+          hashed_token: token.to_hash,
+          locked: false
+        )
+        logger.info('New Exact Online token saved')
+      end
+
       private
 
       def renew_token_if_expired
