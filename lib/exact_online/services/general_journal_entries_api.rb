@@ -9,7 +9,7 @@ module ExactOnline
         delegate :find_by_entry_nr, to: :new
       end
 
-      def find(entry_number)
+      def find_by_entry_nr(entry_number)
         url = "#{base_url}#{RESOURCE}?$filter=EntryNumber eq '#{entry_number}'"
         response = client.get(url).response.body
         parse_response(response)
