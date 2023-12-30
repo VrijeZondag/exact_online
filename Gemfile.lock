@@ -5,6 +5,7 @@ PATH
       faraday
       oauth2
       rails (>= 7.1.2)
+      zeitwerk
 
 GEM
   remote: https://rubygems.org/
