@@ -35,3 +35,4 @@ end
 
 require 'exact_online/services/customers_api'
 require 'exact_online/services/purchase_invoices_api'
+require 'exact_online/services/general_journal_entries_api'
