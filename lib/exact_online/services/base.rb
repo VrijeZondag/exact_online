@@ -3,6 +3,22 @@
 module ExactOnline
   module Services
     class Base
+      class << self
+        def find(id)
+          url = "#{base_url}#{@resource}(guid'#{id}')"
+          response = client.get(url).response.body
+          parse_response(response)
+        end
+
+        def create; end
+
+        def all; end
+
+        def update; end
+
+        def where; end
+      end
+
       def initialize(client = Client.new)
         @client = client
       end
