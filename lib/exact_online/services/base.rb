@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 module ExactOnline
   module Services
     class Base
-      class << self
-        def find(id)
-          url = "#{base_url}#{@resource}(guid'#{id}')"
-          response = client.get(url).response.body
-          parse_response(response)
-        end
+      attr_reader :client
 
+      delegate :base_url, :division, to: :client
+
+      class << self
+        attr_reader :resource_path
+
+        delegate :find, to: :new
+
+        ## To Implement
         def create; end
 
         def all; end
@@ -23,16 +28,14 @@ module ExactOnline
         @client = client
       end
 
-      def base_url
-        @base_url ||= "v1/#{division}/"
+      def find(id)
+        url = "#{base_url}#{resource_path}(guid'#{id}')"
+        response = client.get(url).response.body
+        parse_singleton_response(response)
       end
 
-      def client
-        @client ||= Client.new
-      end
-
-      def division
-        @division ||= client.division
+      def resource_path
+        self.class.resource_path
       end
 
       private
@@ -44,6 +47,10 @@ module ExactOnline
         else
           result
         end
+      end
+
+      def parse_singleton_response(result)
+        Hash.from_xml(result).dig('entry', 'content', 'properties')
       end
     end
   end

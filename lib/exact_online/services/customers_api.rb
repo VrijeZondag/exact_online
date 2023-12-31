@@ -3,7 +3,7 @@
 module ExactOnline
   module Services
     class CustomersApi < Base
-      @resource = 'crm/Accounts'
+      @resource_path = 'crm/Accounts'
 
       class << self
         delegate :find_by_email, to: :new
@@ -16,7 +16,7 @@ module ExactOnline
       end
 
       def find_by_email(email)
-        url = "#{base_url}#{@resource}?$filter=Email eq '#{email}'"
+        url = "#{base_url}#{resource_path}?$filter=Email eq '#{email}'"
         response = client.get(url).response.body
         parse_response(response)
       end

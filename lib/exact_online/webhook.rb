@@ -4,7 +4,7 @@ module ExactOnline
   class Webhook
     attr_reader :guid, :topic, :url
 
-    WEBHOOK_URL = "webhooks/WebhookSubscriptions".freeze
+    WEBHOOK_URL = 'webhooks/WebhookSubscriptions'
 
     def self.all
       client = ExactOnline::Client.new
@@ -52,7 +52,7 @@ module ExactOnline
       end
     end
 
-    def base_url 
+    def base_url
       @base_url ||= "v1/#{ExactOnline::Client.division}/"
     end
 

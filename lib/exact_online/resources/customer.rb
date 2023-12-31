@@ -11,10 +11,20 @@ module ExactOnline
             new(customer)
           end
         end
+
+        def find(id)
+          # Rails.logger.info Services::CustomersApi.find(id)
+          new(Services::CustomersApi.find(id))
+        end
       end
 
       def initialize(attributes = {})
-        @attributes = attributes.dig('content', 'properties')
+        @attributes = if attributes.dig('content', 'properties').nil?
+                        attributes
+                      else
+                        attributes.dig('content', 'properties')
+                      end
+
         @id = @attributes['ID']
         @name = @attributes['Name']
         @email = @attributes['Email']

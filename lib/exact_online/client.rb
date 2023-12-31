@@ -23,6 +23,10 @@ module ExactOnline
       @division ||= config.division
     end
 
+    def base_url
+      @base_url ||= "v1/#{division}/"
+    end
+
     def alive?
       token_valid?
     end
