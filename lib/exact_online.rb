@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-
+require 'exact_online/version'
+require 'exact_online/engine'
 module ExactOnline
   class << self
     attr_writer :configuration
@@ -24,4 +25,5 @@ end
 
 loader = Zeitwerk::Loader.for_gem
 loader.ignore("#{__dir__}/generators")
+
 loader.setup
