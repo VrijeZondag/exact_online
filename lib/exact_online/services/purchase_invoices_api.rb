@@ -3,7 +3,7 @@
 module ExactOnline
   module Services
     class PurchaseInvoicesApi < Base
-      @resource = 'purchaseentry/PurchaseEntries'
+      @resource_path = 'purchaseentry/PurchaseEntries'
     end
   end
 end
