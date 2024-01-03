@@ -3,7 +3,7 @@
 module ExactOnline
   module Services
     class GeneralJournalEntriesApi < Base
-      @resource = 'generaljournalentry/GeneralJournalEntries'
+      @resource_path = 'generaljournalentry/GeneralJournalEntries'
 
       class << self
         delegate :find_by_entry_nr, to: :new

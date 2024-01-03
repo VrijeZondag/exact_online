@@ -15,6 +15,10 @@ module ExactOnline
         def division
           @division ||= client.division
         end
+
+        def find(id)
+          new(@service.find(id))
+        end
       end
 
       def initialize(raw)

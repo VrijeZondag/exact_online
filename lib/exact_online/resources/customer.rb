@@ -4,7 +4,7 @@ module ExactOnline
   module Resources
     class Customer < Base
       attr_accessor :id, :name, :email, :phone, :address, :city, :postcode, :country, :status
-
+      @resource = Services::CustomersApi
       class << self
         def find_by_email(email)
           Services::CustomersApi.find_by(email:).map do |customer|

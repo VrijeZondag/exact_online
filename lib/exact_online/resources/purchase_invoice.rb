@@ -10,18 +10,33 @@ module ExactOnline
     class PurchaseInvoice < Base
       RESOURCE = 'purchaseentry/PurchaseEntries'
       GLANS = %w[7000 7001 7002 7011 7012 7022].freeze
+      attr_accessor :properties
+
+      @service = Services::PurchaseInvoicesApi
+      @properties = [
+        id: "EntryID",
+        invoice_amount: "AmountDC",
+        vat: "VATAmountDC",
+        supplier_name: "SupplierName",
+        supplier_id: "Supplier",
+        invoice_number: "InvoiceNumber",
+        invoice_date: "EntryDate",
+        document_id: "Document"
+      ]
+
+      class << self
+        attr_reader :properties
+      end
 
       attr_accessor :invoice_amount, :id, :vat, :amount_without_vat, :supplier_name,
                     :supplier_id, :invoice_number, :invoice_date, :document_id
 
       class << self
-        def get(id)
-          new(Services::PurchaseInvoicesApi.find(id))
-        end
+        alias_method :get, :find
       end
 
       def initialize(raw)
-        properties = raw['properties']
+        properties = raw
 
         @id = properties['EntryID']
         @invoice_amount = properties['AmountDC'].to_d * -1
