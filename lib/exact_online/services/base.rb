@@ -18,13 +18,6 @@ module ExactOnline
         def all; end
 
         def update; end
-
-        def test_where
-          invoice_id = "f0e209a3-e7de-4852-adaf-fde94d269a66"
-          attributes = { "EntryID" => "guid'#{invoice_id}'" }
-
-          where(**attributes)
-        end
       end
 
       def initialize(client = Client.new)
@@ -38,12 +31,9 @@ module ExactOnline
       end
 
       def where(**attributes)
-        filter = attributes.map { |key, value| "#{key} eq #{value}" }.join(' and ')
-        attributes = self.class.attributes.join(',')
-        url = "#{base_url}#{resource_path}?$filter=#{filter}&$select=#{attributes}"
+        url = "#{base_url}#{resource_path}?#{filter(attributes)}#{collect_selected_attributes}"
         puts url
-        # url = "#{base_url}#{@resource_path}"
-        # url = "#{base_url}#{resource_path}"
+
         response = client.get(url).response.body
         parse_response(response)
       end
@@ -53,6 +43,26 @@ module ExactOnline
       end
 
       private
+
+      def filter(attributes)
+        return nil if attributes.blank?
+
+        filter_attributes = attributes.map { |key, value| "#{key} eq #{strip_extra_apostrophe_for_guid(value)}" }.join(' and ')
+        "$filter=#{filter_attributes}"
+      end
+
+      def strip_extra_apostrophe_for_guid(value)
+        return value if value.include? 'guid'
+
+        "'#{value}'"
+      end
+
+      def collect_selected_attributes
+        return nil if self.class.attributes.blank?
+
+        attributes_csv = self.class.attributes.join(',') if self.class.attributes.present?
+        "&$select=#{attributes_csv}"
+      end
 
       def parse_response(response)
         result = Hash.from_xml(response).dig('feed', 'entry')

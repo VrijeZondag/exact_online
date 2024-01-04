@@ -19,6 +19,10 @@ module ExactOnline
         def find(id)
           new(@service.find(id))
         end
+
+        def where(**attributes)
+          Collection.new(@service.where(**attributes).map { |raw| new(raw) })
+        end
       end
 
       def initialize(raw)

@@ -4,17 +4,11 @@ module ExactOnline
   module Resources
     class Customer < Base
       attr_accessor :id, :name, :email, :phone, :address, :city, :postcode, :country, :status
-      @resource = Services::CustomersApi
+
+      @service = Services::CustomersApi
       class << self
         def find_by_email(email)
-          Services::CustomersApi.find_by(email:).map do |customer|
-            new(customer)
-          end
-        end
-
-        def find(id)
-          # Rails.logger.info Services::CustomersApi.find(id)
-          new(Services::CustomersApi.find(id))
+          @service.where(Email: email).map { |customer| new(customer) }
         end
       end
 
