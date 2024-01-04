@@ -22,7 +22,7 @@ module ExactOnline
       end
 
       def initialize(raw)
-        @raw = raw
+        @properties = raw
       end
     end
   end

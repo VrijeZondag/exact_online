@@ -8,12 +8,20 @@
 module ExactOnline
   module Resources
     class PurchaseInvoice < Base
-      RESOURCE = 'purchaseentry/PurchaseEntries'
       GLANS = %w[7000 7001 7002 7011 7012 7022].freeze
-      attr_accessor :properties
+
+      class << self
+        attr_reader :properties
+
+        alias get find
+      end
+
+      attr_accessor :id, :supplier_name,
+                    :supplier_id, :invoice_number, :invoice_date, :document_id
+      attr_reader :invoice_amount, :vat
 
       @service = Services::PurchaseInvoicesApi
-      @properties = [
+      @properties = {
         id: "EntryID",
         invoice_amount: "AmountDC",
         vat: "VATAmountDC",
@@ -22,31 +30,14 @@ module ExactOnline
         invoice_number: "InvoiceNumber",
         invoice_date: "EntryDate",
         document_id: "Document"
-      ]
-
-      class << self
-        attr_reader :properties
-      end
-
-      attr_accessor :invoice_amount, :id, :vat, :amount_without_vat, :supplier_name,
-                    :supplier_id, :invoice_number, :invoice_date, :document_id
-
-      class << self
-        alias_method :get, :find
-      end
+      }
 
       def initialize(raw)
-        properties = raw
+        super(raw)
 
-        @id = properties['EntryID']
-        @invoice_amount = properties['AmountDC'].to_d * -1
-        @vat = properties['VATAmountDC'].to_d * -1
-        @amount_without_vat = @invoice_amount - @vat
-        @supplier_name = properties['SupplierName']
-        @supplier_id = properties['Supplier']
-        @invoice_number = properties['InvoiceNumber']
-        @invoice_date = properties['EntryDate']
-        @document_id = properties['Document']
+        self.class.properties.each do |key, value|
+          self.method("#{key}=").(@properties[value])
+        end
       end
 
       def purchase_lines?
@@ -59,6 +50,18 @@ module ExactOnline
 
       def document
         @document ||= DocumentAttachment.get(@document_id)
+      end
+
+      def invoice_amount=(amount)
+        @invoice_amount = amount.to_d * -1
+      end
+
+      def vat=(amount)
+        @vat = amount.to_d * -1
+      end
+
+      def amount_without_vat
+        @invoice_amount - @vat
       end
     end
   end
