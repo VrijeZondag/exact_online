@@ -42,7 +42,7 @@ module ExactOnline
           hashed_token: token.to_hash,
           locked: false
         )
-        logger.info('New Exact Online token saved')
+        log.info('New Exact Online token saved')
       end
 
       private

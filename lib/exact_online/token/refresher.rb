@@ -4,6 +4,7 @@ module ExactOnline
   module Token
     class Refresher
       attr_accessor :token, :logger, :token_store
+      MAX_RETRIES = 3
 
       @mutex = Mutex.new
 
@@ -32,7 +33,7 @@ module ExactOnline
         @retries += 1
         sleep(1)
         logger.info("Retrying token refresh for the #{@retries} time")
-        refresh! unless @retries > 10
+        refresh! unless @retries > MAX_RETRIES
       end
 
       def update_saved_token(token)
