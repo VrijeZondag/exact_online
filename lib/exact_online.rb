@@ -16,10 +16,10 @@ module ExactOnline
     def alive?
       Client.new.alive?
     end
-  end
 
-  def find_customers_by_email(email)
-    Resources::Customer.find_by(email:)
+    def find_customers_by_email(email)
+      Resources::Customer.where("Email": email)
+    end
   end
 end
 
