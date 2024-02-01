@@ -6,6 +6,7 @@ module ExactOnline
       attr_accessor :id, :name, :email, :phone, :address, :city, :postcode, :country, :status
 
       @service = Services::CustomersApi
+
       class << self
         def find_by_email(email)
           @service.where(Email: email).map { |customer| new(customer) }
@@ -26,6 +27,10 @@ module ExactOnline
         @address = @attributes['AddressLine1']
         @city = @attributes['City']
         @postcode = @attributes['Postcode']
+      end
+
+      def save
+        self.class.service.create(self)
       end
     end
   end

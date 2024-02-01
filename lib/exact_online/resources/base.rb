@@ -23,6 +23,10 @@ module ExactOnline
         def where(**attributes)
           Collection.new(@service.where(**attributes).map { |raw| new(raw) })
         end
+
+        def service
+          @service
+        end
       end
 
       def initialize(raw)

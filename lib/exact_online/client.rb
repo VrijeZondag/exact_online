@@ -6,7 +6,7 @@ module ExactOnline
 
     delegate :token, :token_valid?, to: :token_manager
     delegate :authorize_url, :receive_code, :load_token, to: :oauth_handler
-    delegate :get, to: :token
+    delegate :get, :post, to: :token
 
     def self.division
       ExactOnline.configuration.division || (raise 'No division found')
