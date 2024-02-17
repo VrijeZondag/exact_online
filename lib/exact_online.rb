@@ -20,6 +20,10 @@ module ExactOnline
     def find_customers_by_email(email)
       Resources::Customer.where("Email": email)
     end
+
+    def find_transaction_line(guid)
+      Resources::TransactionLine.find(guid)
+    end
   end
 end
 

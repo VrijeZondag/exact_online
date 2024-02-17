@@ -32,8 +32,6 @@ module ExactOnline
 
       def where(**attributes)
         url = "#{base_url}#{resource_path}?#{filter(attributes)}#{collect_selected_attributes}"
-        puts url
-
         response = client.get(url).response.body
         parse_response(response)
       end
