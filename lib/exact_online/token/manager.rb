@@ -6,8 +6,11 @@ module ExactOnline
       attr_reader :token_store, :config, :oauth_client, :client
 
       @mutex = Mutex.new
+      @rate_limiter1 = ExactOnline::RateLimiter.new(60, 1.minute)
+      @rate_limiter2 = ExactOnline::RateLimiter.new(5000, 1.day)
+
       class << self
-        attr_reader :mutex
+        attr_reader :mutex, :rate_limiter1, :rate_limiter2
       end
 
       def initialize(client, oauth_client)
@@ -19,6 +22,7 @@ module ExactOnline
 
       def token
         self.class.mutex.synchronize do
+          wait_for_request
           renew_token_if_expired
           current_token
         end
@@ -29,7 +33,7 @@ module ExactOnline
 
         true
       rescue StandardError => e
-        Rails.logger.error("Failed to validate token: #{e.message}")
+        log_error("Failed to validate token: #{e.message}")
         false
       end
 
@@ -53,7 +57,7 @@ module ExactOnline
         log_info('Exact Online token expired, refreshing')
         renew_token
       rescue StandardError => e
-        Rails.logger.error("Failed to refresh token: #{e.message}")
+        log_error("Failed to refresh token: #{e.message}")
         token_store.find_or_create_by(app: :exact_online).update(locked: false)
       end
 
@@ -77,6 +81,15 @@ module ExactOnline
 
       def log_info(message)
         Rails.logger.info(message)
+      end
+
+      def log_error(message)
+        Rails.logger.error(message)
+      end
+
+      def wait_for_request
+        self.class.rate_limiter1.wait_for_request
+        self.class.rate_limiter2.wait_for_request
       end
     end
   end
