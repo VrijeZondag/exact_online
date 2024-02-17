@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ExactOnline
   module Resources
     class TransactionLine < Base
@@ -20,7 +22,7 @@ module ExactOnline
       end
 
       def attributes
-        hash = Hash.new
+        hash = {}
         instance_variables.each do |v|
           attribute = v.to_s.delete('@')
           hash[attribute] = instance_variable_get(v)

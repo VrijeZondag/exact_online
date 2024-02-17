@@ -22,21 +22,21 @@ module ExactOnline
 
       @service = Services::PurchaseInvoicesApi
       @properties = {
-        id: "EntryID",
-        invoice_amount: "AmountDC",
-        vat: "VATAmountDC",
-        supplier_name: "SupplierName",
-        supplier_id: "Supplier",
-        invoice_number: "InvoiceNumber",
-        invoice_date: "EntryDate",
-        document_id: "Document"
+        id: 'EntryID',
+        invoice_amount: 'AmountDC',
+        vat: 'VATAmountDC',
+        supplier_name: 'SupplierName',
+        supplier_id: 'Supplier',
+        invoice_number: 'InvoiceNumber',
+        invoice_date: 'EntryDate',
+        document_id: 'Document'
       }
 
       def initialize(raw)
         super(raw)
 
         self.class.properties.each do |key, value|
-          self.method("#{key}=").(@properties[value])
+          method("#{key}=").call(@properties[value])
         end
       end
 

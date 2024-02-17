@@ -4,7 +4,7 @@ module ExactOnline
   module Resources
     class PurchaseInvoiceLines < Base
       @service = Services::PurchaseInvoiceLinesApi
-      CONTENT_PROPERTIES_KEY  = %w[content properties].freeze
+      CONTENT_PROPERTIES_KEY = %w[content properties].freeze
 
       attr_reader :description, :amount, :gl_account_code
 

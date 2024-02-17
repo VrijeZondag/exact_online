@@ -4,6 +4,7 @@ module ExactOnline
   module Token
     class Refresher
       attr_accessor :token, :logger, :token_store
+
       MAX_RETRIES = 3
 
       @mutex = Mutex.new

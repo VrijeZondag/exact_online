@@ -24,9 +24,7 @@ module ExactOnline
           Collection.new(@service.where(**attributes).map { |raw| new(raw) })
         end
 
-        def service
-          @service
-        end
+        attr_reader :service
       end
 
       def initialize(raw)

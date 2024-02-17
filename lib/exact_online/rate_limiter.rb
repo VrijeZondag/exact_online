@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ExactOnline
   class RateLimiter
     def initialize(limit, period)

@@ -34,14 +34,14 @@ module ExactOnline
           "City": attributes.city,
           "Postcode": attributes.postcode,
           "Phone": attributes.phone,
-          "Status": "C"
+          "Status": 'C'
         }
 
         response = client.post(url) do |req|
           req.body = body.to_json
-          req.headers["Content-Type"] = "application/json"
+          req.headers['Content-Type'] = 'application/json'
         end
-          
+
         Hash.from_xml(response.response.body).dig('entry', 'content', 'properties', 'ID')
       end
     end

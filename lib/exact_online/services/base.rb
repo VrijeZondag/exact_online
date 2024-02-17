@@ -45,7 +45,9 @@ module ExactOnline
       def filter(attributes)
         return nil if attributes.blank?
 
-        filter_attributes = attributes.map { |key, value| "#{key} eq #{strip_extra_apostrophe_for_guid(value)}" }.join(' and ')
+        filter_attributes = attributes.map do |key, value|
+          "#{key} eq #{strip_extra_apostrophe_for_guid(value)}"
+        end.join(' and ')
         "$filter=#{filter_attributes}"
       end
 

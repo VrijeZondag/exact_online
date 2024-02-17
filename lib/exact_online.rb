@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'exact_online/version'
 require 'exact_online/engine'
 module ExactOnline
