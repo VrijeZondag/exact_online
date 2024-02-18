@@ -8,7 +8,8 @@ module ExactOnline
       @resource_path = 'financialtransaction/TransactionLines'
       @bulk_resource_path = 'bulk/Financial/TransactionLines'
       @sync_resource_path = 'sync/Financial/TransactionLines'
-      @attributes = %w[AccountCode AccountName AmountDC AmountFC Date]
+      @attributes = %w[ID AmountDC Date Description EntryID FinancialPeriod
+                       FinancialYear GLAccountCode GLAccount JournalCode]
     end
   end
 end

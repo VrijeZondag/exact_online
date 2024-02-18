@@ -8,9 +8,9 @@ module ExactOnline
       delegate :base_url, :division, to: :client
 
       class << self
-        attr_reader :resource_path, :attributes
+        attr_reader :resource_path, :attributes, :bulk_resource_path
 
-        delegate :find, :where, to: :new
+        delegate :find, :where, :import_all, to: :new
 
         ## To Implement
         def create; end
@@ -18,6 +18,10 @@ module ExactOnline
         def all; end
 
         def update; end
+
+        def bulk_import_url
+          new.import_url
+        end
       end
 
       def initialize(client = Client.new)
@@ -38,6 +42,14 @@ module ExactOnline
 
       def resource_path
         self.class.resource_path
+      end
+
+      def import_url
+        "#{base_url}#{bulk_resource_path}?#{collect_selected_attributes}"
+      end
+
+      def bulk_resource_path
+        self.class.bulk_resource_path
       end
 
       private

@@ -9,6 +9,7 @@ module ExactOnline
       @service = Services::TransactionLinesApi
 
       def initialize(attributes = {})
+        @guid = attributes['ID']
         @amount = attributes['AmountDC']
         @date = attributes['Date']
         @description = attributes['Description']
