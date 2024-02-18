@@ -6,7 +6,7 @@ class CreateExactOnlineGlAccounts < ActiveRecord::Migration[7.1]
       t.string :guid, null: false, index: { unique: true }
       t.decimal :code, null: false, index: { unique: true }
       t.string :description
-      t.string :type
+      t.string :account_type
 
       t.timestamps
     end

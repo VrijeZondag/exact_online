@@ -3,7 +3,7 @@
 module ExactOnline
   module Resources
     class GlAccount < Base
-      attr_accessor :guid, :code, :description, :type
+      attr_accessor :guid, :code, :description, :account_type
 
       @service = Services::GlAccountsApi
 
@@ -11,7 +11,7 @@ module ExactOnline
         @guid = attributes['ID']
         @code = attributes['Code']
         @description = attributes['Description']
-        @type = attributes['Type']
+        @account_type = attributes['Type']
       end
 
       def attributes
