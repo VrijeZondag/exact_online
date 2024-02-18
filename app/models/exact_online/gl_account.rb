@@ -8,6 +8,8 @@ module ExactOnline
     @service = ExactOnline::Services::GlAccountsApi
     @resource = ExactOnline::Resources::GlAccount
 
+    has_many :transaction_lines, foreign_key: :glAccountCode, primary_key: :code
+
     class << self
       attr_reader :service, :resource
     end
