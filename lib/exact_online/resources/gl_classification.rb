@@ -3,9 +3,9 @@
 module ExactOnline
   module Resources
     class GlClassification < Base
-      attr_accessor :guid, :code, :description, :name, :parent, :namespace, :classification_type
+      attr_accessor :guid, :code, :description, :name, :parent, :namespace, :classification_type, :namespace_description
 
-      @service = Services::GlAccountsApi
+      @service = Services::GlClassificationsApi
 
       def initialize(attributes = {})
         @guid = attributes['ID']
@@ -13,7 +13,8 @@ module ExactOnline
         @description = attributes['Description']
         @name = attributes['Name']
         @parent = attributes['Parent']
-        @namespace = attributes['Namespace']
+        @namespace = attributes['TaxonomyNamespace']
+        @namespace_description = attributes['TaxonomyNamespaceDescription']
         @classification_type = attributes['Type']
       end
 

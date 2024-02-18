@@ -5,7 +5,7 @@ module ExactOnline
     class GlClassificationsApi < Base
       @resource_path = 'financial/GLClassifications'
       @bulk_resource_path = 'bulk/Financial/GLClassifications'
-      @attributes = %w[ID Code Description Name Parent Namespace Type]
+      @attributes = %w[ID Code Description Name Parent TaxonomyNamespace TaxonomyNamespaceDescription Type]
     end
   end
 end

@@ -28,7 +28,7 @@ module ExactOnline
     @service = ExactOnline::Services::TransactionLinesApi
     @resource = ExactOnline::Resources::TransactionLine
 
-    belongs_to :gl_account, foreign_key: :glAccountCode, primary_key: :code
+    belongs_to :account, class_name: 'ExactOnline::GlAccount', foreign_key: :glAccountCode, primary_key: :code
 
     class << self
       attr_reader :service, :resource
