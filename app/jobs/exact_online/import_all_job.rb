@@ -11,6 +11,7 @@ module ExactOnline
       import(ExactOnline::GlClassification)
       import(ExactOnline::GlAccountClassificationMapping)
       import(ExactOnline::TransactionLine)
+      import(ExactOnline::Account)
       GlScheme.setup
     end
 

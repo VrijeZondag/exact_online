@@ -4,7 +4,9 @@ module ExactOnline
   module Resources
     class TransactionLine < Base
       attr_accessor :guid, :amount, :date, :description, :entryId, :financialPeriod,
-                    :financialYear, :glAccountCode, :glAccountId, :glAccountDescription, :journal
+                    :financialYear, :glAccountCode, :glAccountId, :glAccountDescription, :journal,
+                    :status, :transaction_line_type, :account_code, :account_name, :document_number,
+                    :invoice_number, :item, :tracking_number
 
       @service = Services::TransactionLinesApi
 

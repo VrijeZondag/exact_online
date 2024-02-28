@@ -4,6 +4,8 @@ module ExactOnline
   module Services
     class CustomersApi < Base
       @resource_path = 'crm/Accounts'
+      @bulk_resource_path = 'bulk/CRM/Accounts'
+      @attributes = %w[ID Name Email AddressLine1 City Postcode Phone Status Code IsSales IsSupplier]
 
       class << self
         delegate :find_by_email, :save, to: :new
