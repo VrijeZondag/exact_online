@@ -14,6 +14,14 @@ class CreateTransactionLines < ActiveRecord::Migration[7.1]
       t.string :glAccountId
       t.string :glAccountDescription
       t.decimal :journal
+      t.string :status
+      t.string :transaction_line_type
+      t.string :account_code
+      t.string :account_name
+      t.string :document_number
+      t.string :invoice_number
+      t.string :item
+      t.string :tracking_number
 
       t.timestamps
     end

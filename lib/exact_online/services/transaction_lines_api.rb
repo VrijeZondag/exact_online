@@ -9,7 +9,9 @@ module ExactOnline
       @bulk_resource_path = 'bulk/Financial/TransactionLines'
       @sync_resource_path = 'sync/Financial/TransactionLines'
       @attributes = %w[ID AmountDC Date Description EntryID FinancialPeriod
-                       FinancialYear GLAccountCode GLAccount JournalCode]
+                       FinancialYear GLAccountCode GLAccount JournalCode Status
+                       Type AccountCode AccountName DocumentNumber InvoiceNumber
+                       Item TrackingNumber]
     end
   end
 end

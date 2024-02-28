@@ -20,6 +20,14 @@ module ExactOnline
         @glAccountId = attributes['GLAccount']
         @glAccountDescription = attributes['GLAccountDescription']
         @journal = attributes['JournalCode']
+        @status = attributes['Status']
+        @transaction_line_type = attributes['Type']
+        @account_code = attributes['AccountCode']
+        @account_name = attributes['AccountName']
+        @document_number = attributes['DocumentNumber']
+        @invoice_number = attributes['InvoiceNumber']
+        @item = attributes['Item']
+        @tracking_number = attributes['TrackingNumber']
       end
 
       def attributes
