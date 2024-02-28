@@ -16,7 +16,7 @@ module ExactOnline
     #          primary_key: :guid
 
     has_many :classifications,
-             class_name: "ExactOnline::GlClassification",
+             class_name: 'ExactOnline::GlClassification',
              foreign_key: :namespace,
              primary_key: :guid
 

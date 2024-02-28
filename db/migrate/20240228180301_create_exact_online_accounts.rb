@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateExactOnlineAccounts < ActiveRecord::Migration[7.1]
   def change
     create_table :exact_online_accounts do |t|

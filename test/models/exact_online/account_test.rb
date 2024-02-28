@@ -1,7 +1,11 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class ExactOnline::AccountTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+require 'test_helper'
+
+module ExactOnline
+  class AccountTest < ActiveSupport::TestCase
+    # test "the truth" do
+    #   assert true
+    # end
+  end
 end
