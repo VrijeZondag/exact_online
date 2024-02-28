@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     resources :purchase_invoices, only: [] do
       post :webhook, on: :collection
     end
+
+    resource :transactions, only: [] do
+      post :webhook
+    end
   end
 end

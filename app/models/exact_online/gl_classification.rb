@@ -19,24 +19,19 @@ module ExactOnline
              foreign_key: :gl_scheme_guid,
              primary_key: :guid
 
-    has_many :accounts,
+    has_many :accounts, -> { distinct },
              through: :mappings,
              class_name: 'ExactOnline::GlAccount',
              foreign_key: :gl_account_guid,
              primary_key: :guid
 
+    has_one :parent, class_name: 'ExactOnline::GlClassification', primary_key: :parent, foreign_key: :guid
+    has_many :children, class_name: 'ExactOnline::GlClassification', primary_key: :guid, foreign_key: :parent
+
     has_many :transaction_lines, through: :accounts
 
     class << self
       attr_reader :service, :resource
-    end
-
-    def parent_classification
-      where(guid: parent).first
-    end
-
-    def classifications
-      where(parent:)
     end
 
     def scheme

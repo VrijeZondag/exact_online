@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
+# ExactOnline::ImportJob.perform_now(ExactOnline::GlClassification)
+
 module ExactOnline
   class ImportAllJob < ApplicationJob
     queue_as :default
 
     def perform
-      import(GlAccount)
-      import(GlClassification)
-      import(GlAccountClassificationMapping)
-      import(TransactionLine)
+      import(ExactOnline::GlAccount)
+      import(ExactOnline::GlClassification)
+      import(ExactOnline::GlAccountClassificationMapping)
+      import(ExactOnline::TransactionLine)
       GlScheme.setup
     end
 

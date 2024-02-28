@@ -9,13 +9,19 @@ module ExactOnline
              foreign_key: :gl_scheme_guid,
              primary_key: :guid
 
+    # has_many :classifications,
+    #          through: :mappings,
+    #          class_name: 'ExactOnline::GlClassification',
+    #          foreign_key: :classification_guid,
+    #          primary_key: :guid
+
     has_many :classifications,
-             through: :mappings,
-             class_name: 'ExactOnline::GlClassification',
-             foreign_key: :classification_guid,
+             class_name: "ExactOnline::GlClassification",
+             foreign_key: :namespace,
              primary_key: :guid
 
     has_many :accounts,
+             -> { distinct },
              through: :mappings,
              class_name: 'ExactOnline::GlAccount',
              foreign_key: :gl_account_guid,
