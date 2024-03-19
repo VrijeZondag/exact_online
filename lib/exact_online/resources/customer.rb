@@ -3,7 +3,7 @@
 module ExactOnline
   module Resources
     class Customer < Base
-      attr_accessor :id, :name, :email, :phone, :address, :city, :postcode, :country, :status,
+      attr_accessor :exact_id, :name, :email, :phone, :address, :city, :postcode, :country, :status,
                     :code, :is_sales, :is_supplier
 
       @service = Services::CustomersApi
@@ -31,7 +31,7 @@ module ExactOnline
       # end
 
       def initialize(attributes = {})
-        @id = attributes['ID']
+        @exact_id = attributes['ID']
         @name = attributes['Name']
         @email = attributes['Email']
         @address = attributes['AddressLine1']
@@ -46,6 +46,15 @@ module ExactOnline
 
       def save
         self.class.service.create(self)
+      end
+
+      def attributes
+        hash = {}
+        instance_variables.each do |v|
+          attribute = v.to_s.delete('@')
+          hash[attribute] = instance_variable_get(v)
+        end
+        hash
       end
     end
   end

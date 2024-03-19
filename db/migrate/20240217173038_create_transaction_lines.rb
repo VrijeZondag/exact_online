@@ -16,7 +16,7 @@ class CreateTransactionLines < ActiveRecord::Migration[7.1]
       t.decimal :journal
       t.string :status
       t.string :transaction_line_type
-      t.string :account_code
+      t.decimal :account_code
       t.string :account_name
       t.string :document_number
       t.string :invoice_number

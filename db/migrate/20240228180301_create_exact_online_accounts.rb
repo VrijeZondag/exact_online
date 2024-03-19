@@ -3,6 +3,7 @@
 class CreateExactOnlineAccounts < ActiveRecord::Migration[7.1]
   def change
     create_table :exact_online_accounts do |t|
+      t.string :exact_id
       t.string :name
       t.string :email
       t.string :address
@@ -13,7 +14,7 @@ class CreateExactOnlineAccounts < ActiveRecord::Migration[7.1]
       t.string :code
       t.string :is_sales
       t.string :is_supplier
-
+      
       t.timestamps
     end
   end
