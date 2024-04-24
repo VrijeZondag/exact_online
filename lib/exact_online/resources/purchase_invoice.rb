@@ -8,7 +8,7 @@
 module ExactOnline
   module Resources
     class PurchaseInvoice < Base
-      GLANS = %w[7000 7001 7002 7011 7012 7022].freeze
+      GLANS = %w[7000 7001 7002 7011 7012 7022 7052].freeze
 
       class << self
         attr_reader :properties
