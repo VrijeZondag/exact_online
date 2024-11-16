@@ -31,7 +31,7 @@ module ExactOnline
     end
 
     def create_sales_invoice(customer_id, invoice_lines)
-      ExactOnline::Services::SalesInvoicesApi.new.create(customer_id: customer_id, invoice_lines: invoice_lines)
+      ExactOnline::Services::SalesInvoicesApi.new.create(ordered_by: customer_id, invoice_lines: invoice_lines)
     end
   end
 end
