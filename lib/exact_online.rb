@@ -25,6 +25,14 @@ module ExactOnline
     def find_transaction_line(guid)
       Resources::TransactionLine.find(guid)
     end
+
+    def create_test_sales_invoice
+      ExactOnline::Services::SalesInvoicesApi.new.create(ordered_by: "a6c512e8-d08b-4817-9dc7-21cc3771cad5", invoice_lines: [{item: "229614d9-07b8-4233-a87f-7abef2c79eef", quantity: 1}, {item: "229614d9-07b8-4233-a87f-7abef2c79eef", quantity: 2}])
+    end
+
+    def create_sales_invoice(customer_id, invoice_lines)
+      ExactOnline::Services::SalesInvoicesApi.new.create(customer_id: customer_id, invoice_lines: invoice_lines)
+    end
   end
 end
 
