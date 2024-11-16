@@ -27,11 +27,11 @@ module ExactOnline
       def format_invoice_lines(invoice_lines)
         invoice_lines.map do |invoice_line|
           {
-            "Item": invoice_line[:item],
-            "Quantity": invoice_line[:quantity],
-            "GLAccount": "376cb84e-eafa-4bcd-8715-3c8b321bd2bf",
-            "AmountFC": invoice_line[:price] if invoice_line[:price].present?
-          }
+            "Item" => invoice_line[:item],
+            "Quantity" => invoice_line[:quantity],
+            "GLAccount" => "376cb84e-eafa-4bcd-8715-3c8b321bd2bf",
+            "AmountFC" => invoice_line[:price]
+          }.compact
         end
       end
     end
