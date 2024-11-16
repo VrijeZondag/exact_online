@@ -31,7 +31,9 @@ module ExactOnline
             "Quantity" => invoice_line[:quantity],
             "GLAccount" => "376cb84e-eafa-4bcd-8715-3c8b321bd2bf",
             "AmountFC" => invoice_line[:price],
-            "Description" => invoice_line[:description]
+            "Description" => invoice_line[:description],
+            "UnitPrice" => invoice_line[:price],
+            "AmountDC" => invoice_line[:price]
           }.compact
         end
       end
