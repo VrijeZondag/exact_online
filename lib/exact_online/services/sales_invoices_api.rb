@@ -29,7 +29,7 @@ module ExactOnline
           {
             "Item": invoice_line[:item],
             "Quantity": invoice_line[:quantity],
-            "GLAccount": "376cb84e-eafa-4bcd-8715-3c8b321bd2bf"
+            "GLAccount": "376cb84e-eafa-4bcd-8715-3c8b321bd2bf",
             "AmountFC": invoice_line[:price] if invoice_line[:price].present?
           }
         end
