@@ -33,7 +33,8 @@ module ExactOnline
             "AmountFC" => invoice_line[:price],
             "Description" => invoice_line[:description],
             "UnitPrice" => invoice_line[:price],
-            "AmountDC" => invoice_line[:price]
+            "AmountDC" => invoice_line[:price],
+            "VatCode": "b2bc9d1e-1b61-4069-ae56-01471d91dddb"
           }.compact
         end
       end
