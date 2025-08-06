@@ -10,7 +10,7 @@ module ExactOnline
 
       class << self
         def find_by_email(email)
-          @service.where(Email: email).map { |customer| new(customer) }
+          @service.find_by_email(email).map { |customer| new(customer.dig('content', 'properties')) }
         end
       end
 
